@@ -1,2 +1,2 @@
 # iploc
-uses [IP Geolocation's API](ipgeolocation.io) to find IP location
+uses [IP Geolocation's API](https://ipgeolocation.io) to find IP location
