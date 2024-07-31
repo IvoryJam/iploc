@@ -17,9 +17,11 @@ func main() {
 		ip, _ = reader.ReadString('\n')
 	} else if len(os.Args) > 1 {
 		ips := os.Args[1:]
-		for _, i := range ips {
+		for x, i := range ips {
 			getLoc(i)
-			fmt.Println("")
+			if x != len(ips)-1 {
+				fmt.Println()
+			}
 		}
 		os.Exit(0)
 	}
