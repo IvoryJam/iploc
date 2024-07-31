@@ -9,6 +9,23 @@ import (
 	"os"
 )
 
+func main() {
+	ip := os.Args[len(os.Args)-1]
+	if os.Args[0] == ip {
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Print("IP: ")
+		ip, _ = reader.ReadString('\n')
+	} else if len(os.Args) > 1 {
+		ips := os.Args[1:]
+		for _, i := range ips {
+			getLoc(i)
+			fmt.Println("")
+		}
+		os.Exit(0)
+	}
+	getLoc(ip)
+}
+
 func getLoc(ip string) {
 	type geolocation struct {
 		CountryName string `json:"country_name"`
@@ -37,21 +54,4 @@ func getLoc(ip string) {
 	fmt.Println("State:\t\t", geoInfo.State)
 	fmt.Println("IP:\t\t", geoInfo.IP)
 	fmt.Println("ISP:\t\t", geoInfo.ISP)
-}
-
-func main() {
-	ip := os.Args[len(os.Args)-1]
-	if os.Args[0] == ip {
-		reader := bufio.NewReader(os.Stdin)
-		fmt.Print("IP: ")
-		ip, _ = reader.ReadString('\n')
-	} else if len(os.Args) > 1 {
-		ips := os.Args[1:]
-		for _, i := range ips {
-			getLoc(i)
-			fmt.Println("")
-		}
-		os.Exit(0)
-	}
-	getLoc(ip)
 }
